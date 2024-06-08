@@ -1,2 +1,2 @@
 # dan_it_devops
-Folder for homeworks
+Branch for homework
