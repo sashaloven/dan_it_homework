@@ -1,0 +1,6 @@
+1. Linux kernel is the core part of the Linux operating system, what coordinates all actions in the computer. 
+Its bridge between hardware and software applications.
+
+2. Librarires are collections of pre written code what ptodrams can use to perform common task. They can be static or dynamic (secound used offen - the executable links to the library at runtime). Path of automation for me, you can easy use it for common task and dont have to write it from scratch.
+
+3. System utilities in Linux are programs that help users and administrators manage the system, perform diagnostics, configure, and maintain the computer. Tools for performing various system tasks (file management, monitoring network conf. and more)
