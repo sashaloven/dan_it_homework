@@ -1,0 +1,16 @@
+This action from user root:
+
+1. useradd -m bob
+2. usermod -aG wheel bob
+3. passwd -u bob
+4. create a script for change hostname and use 'chmod 700 change_hostname.sh' for execute for 'bob'
+5. su bob 
+
+from user bob:
+
+6. sudo install nginx
+5. sudo systemctl start nginx
+6. sudo systemctl enable nginx
+7. sudo systemctl status nginx
+8. netstat
+
