@@ -4,6 +4,7 @@ This action from user root:
 2. usermod -aG wheel bob
 3. passwd -u bob
 4. create a script for change hostname and use 'chmod 700 change_hostname.sh' for execute for 'bob'
+chown bob change_hostname.sh - change owner 
 5. su bob 
 
 from user bob:
