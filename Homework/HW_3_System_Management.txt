@@ -1,0 +1,30 @@
+	1. Booting the Linux system 
+
+1. BIOS/UEFI Initialization - main functions include initializing hardware components, check hardware errors and then locating the boot loader.
+
+2. Boot loader: MBR (Master Boot Record) or GPT (GUID Partition Table)
+
+3. GRUB for Linux (for example)
+Its has a 1_1.5_2 stages - responsible for loading the Linux kernel into memory. Provide a selection for choose a different kernel versions or operating system (Windows - Linux...) 
+
+4. Kernel Initialization: 
+The boot loader loads the Linux kernel into memory and hands over control to it. After its initialiying hardware and drivers.
+
+5. Init(older systems) or systemd:
+The initial process started by the kernel is the init system. The init system runs initialization scripst to set up user space enviroment.
+
+
+	2.How to view system logs
+System logs are stored in files in /var/log dir.
+You can view logs with tool 'journalctl or dmesg' (easy way) or view direct files, like 'var/log/syslog with command tail -f (live) or another command and use 'grep' for help find logs what you need
+
+
+	3.RW perm
+ -rw------- perm - read and write for owner. Groups or users cant do nothing with file (no root).
+To add 'x' you can use 2 way:
+1. chmod u+x 'filename'
+2. chmod 700 'filename'
+
+
+	4. Difference between apt and dpkg
+Both are essentional tools in Debian-based systems. 'apt' ease of use by managing dependencies and interact with repo, 'dpkg' more direct control over individual .deb packages
