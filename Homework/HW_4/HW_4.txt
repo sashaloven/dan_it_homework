@@ -13,4 +13,4 @@ from user bob:
 5. sudo systemctl start nginx
 6. sudo systemctl enable nginx
 7. sudo systemctl status nginx
-8. netstat -nlp
+8. netstat -ntulp
