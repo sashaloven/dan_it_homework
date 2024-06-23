@@ -2,7 +2,7 @@
 Branch for homework
 
 Question for mentor:
-HW_4 - I dont know right format for this king of homework, say if its okay.
+1. HW_4 - I dont know right format for this king of homework, say if its okay.
 
 Question for teacher:
 1. If I use /bin/bash and run script without +x permision 'bash script.sh'.
