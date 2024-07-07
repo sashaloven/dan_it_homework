@@ -1,0 +1,21 @@
+I install nginx and monit service.
+Create a file /etc/monit/conf.d/nginx with :
+
+check host nginx with address 127.0.0.1
+    if failed port 80 protocol http then alert
+    if failed port 80 protocol http then restart
+    if failed port 80 protocol http for 7 times within 7 cycles then unmonitor
+    start program = "/usr/sbin/service nginx start"
+    stop program  = "/usr/sbin/service nginx stop"
+
+Which monitoring nginx service on port 80 and try to reload 7 times.
+
+I change file /etc/monit/monitrc 
+add: 
+set httpd port 2812
+use address localhost
+allow localhost
+
+for web interface
+
+restart monit. Everything worker, so I stop nginx service and add output screenshot. Its trying to restart but it doesnt worked.
