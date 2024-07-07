@@ -10,23 +10,24 @@ passwd john
 	4. AllowUsers john
 
 systemctl restart ssh
-ssh-keygen -t rsa -b 4096 #add key
+ssh-keygen -t rsa -b 4096 	#add key
 chmod 700 ./ssh
 chmod 600 ./ssh/id_rsa.pub
 after I copy public key to ubuntu_server
 
-ssh -p 2222 john@ip_addr 
+ssh -p 2222 john@ip_addr 	# ps aux | grep sshd - screens
 
 4. In parallel port 3333
-cp /etc/ssh/sshd_config /etc/ssh/sshd_config_debud #Copy to debug conf file
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config_debud 	#Copy to debug conf file
 # In new file i will change:
 	1. Port 3333
 	2. PasswordAuthentication yes
 	3. PermitRootLogin no
-sudo /usr/sbin/sshd -f /etc/ssh/sshd_config_debug -D #Start server with new conf file.
+
+sudo /usr/sbin/sshd -f /etc/ssh/sshd_config_debug -D 	#Start server with new conf file.
 
 After I connect from another terminal to port 3333
 
-ssh -p 3333 john@id_addr
-netstat -tulp #add photo
+ssh -p 3333 john@id_addr 	# ps aux | grep sshd - screens
+netstat -tulp 			# add photo
 
