@@ -1,0 +1,233 @@
+GET all students:
+[
+  {
+    "age": " 22",
+    "first_name": " igon",
+    "id": "1",
+    "last_name": " kont"
+  },
+  {
+    "age": " 24",
+    "first_name": " ivan",
+    "id": "2",
+    "last_name": " smel"
+  },
+  {
+    "age": " 44",
+    "first_name": " artem",
+    "id": "3",
+    "last_name": " kris"
+  },
+  {
+    "age": " 55",
+    "first_name": " gmon",
+    "id": "4",
+    "last_name": " dasl"
+  }
+]
+
+
+POST student 1:
+{
+  "age": 20,
+  "first_name": "John",
+  "id": "5",
+  "last_name": "Doe"
+}
+
+
+POST student 2:
+{
+  "age": 21,
+  "first_name": "Jane",
+  "id": "6",
+  "last_name": "Doe"
+}
+
+
+POST student 3:
+{
+  "age": 22,
+  "first_name": "Jim",
+  "id": "7",
+  "last_name": "Beam"
+}
+
+
+GET all students after adding three students:
+[
+  {
+    "age": " 22",
+    "first_name": " igon",
+    "id": "1",
+    "last_name": " kont"
+  },
+  {
+    "age": " 24",
+    "first_name": " ivan",
+    "id": "2",
+    "last_name": " smel"
+  },
+  {
+    "age": " 44",
+    "first_name": " artem",
+    "id": "3",
+    "last_name": " kris"
+  },
+  {
+    "age": " 55",
+    "first_name": " gmon",
+    "id": "4",
+    "last_name": " dasl"
+  },
+  {
+    "age": "20",
+    "first_name": "John",
+    "id": "5",
+    "last_name": "Doe"
+  },
+  {
+    "age": "21",
+    "first_name": "Jane",
+    "id": "6",
+    "last_name": "Doe"
+  },
+  {
+    "age": "22",
+    "first_name": "Jim",
+    "id": "7",
+    "last_name": "Beam"
+  }
+]
+
+
+PATCH update age of second student:
+{
+  "age": 23,
+  "first_name": " ivan",
+  "id": "2",
+  "last_name": " smel"
+}
+
+
+GET second student after age update:
+{
+  "age": "23",
+  "first_name": " ivan",
+  "id": "2",
+  "last_name": " smel"
+}
+
+
+PUT update third student:
+{
+  "age": 24,
+  "first_name": "Jimmy",
+  "id": "3",
+  "last_name": "Bourbon"
+}
+
+
+GET third student after update:
+{
+  "age": "24",
+  "first_name": "Jimmy",
+  "id": "3",
+  "last_name": "Bourbon"
+}
+
+
+GET all students after all updates:
+[
+  {
+    "age": " 22",
+    "first_name": " igon",
+    "id": "1",
+    "last_name": " kont"
+  },
+  {
+    "age": "23",
+    "first_name": " ivan",
+    "id": "2",
+    "last_name": " smel"
+  },
+  {
+    "age": "24",
+    "first_name": "Jimmy",
+    "id": "3",
+    "last_name": "Bourbon"
+  },
+  {
+    "age": " 55",
+    "first_name": " gmon",
+    "id": "4",
+    "last_name": " dasl"
+  },
+  {
+    "age": "20",
+    "first_name": "John",
+    "id": "5",
+    "last_name": "Doe"
+  },
+  {
+    "age": "21",
+    "first_name": "Jane",
+    "id": "6",
+    "last_name": "Doe"
+  },
+  {
+    "age": "22",
+    "first_name": "Jim",
+    "id": "7",
+    "last_name": "Beam"
+  }
+]
+
+
+DELETE first student:
+{
+  "result": "Student deleted"
+}
+
+
+GET all students after deletion:
+[
+  {
+    "age": "23",
+    "first_name": " ivan",
+    "id": "2",
+    "last_name": " smel"
+  },
+  {
+    "age": "24",
+    "first_name": "Jimmy",
+    "id": "3",
+    "last_name": "Bourbon"
+  },
+  {
+    "age": " 55",
+    "first_name": " gmon",
+    "id": "4",
+    "last_name": " dasl"
+  },
+  {
+    "age": "20",
+    "first_name": "John",
+    "id": "5",
+    "last_name": "Doe"
+  },
+  {
+    "age": "21",
+    "first_name": "Jane",
+    "id": "6",
+    "last_name": "Doe"
+  },
+  {
+    "age": "22",
+    "first_name": "Jim",
+    "id": "7",
+    "last_name": "Beam"
+  }
+]
+
+
