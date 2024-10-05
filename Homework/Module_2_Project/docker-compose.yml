@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  jenkins:
+    build:
+      context: ./jenkins_server
+      dockerfile: Dockerfile
+    image: jenkins_server
+    container_name: docker_jenkins_server
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - /var/jenkins_server_home:/home/jenkins
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - docker_jenkins_network
+
+  jenkins_worker:
+    build:
+      context: ./jenkins_worker
+      dockerfile: Dockerfile
+    image: jenkins_worker
+    container_name: jenkins_worker_1
+    volumes:
+      - /home/jenkins:/home/jenkins
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker:ro
+      - /usr/libexec/docker/cli-plugins:/usr/libexec/docker/cli-plugins
+    environment:
+      - JENKINS_URL=http://172.19.0.2:8080
+      - JENKINS_AGENT_NAME=jenkins_worker_1
+      - JENKINS_SECRET=b151e7ee0504ce4bd3f418f1586e5685ad6446597aaaa82642c5866d27c4a12b
+    networks:
+      - docker_jenkins_network
+
+networks:
+  docker_jenkins_network: 
+    driver: bridge
+      
