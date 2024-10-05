@@ -1,0 +1,6 @@
+https://github.com/sashaloven/CI_CD_Project  -> Jenkinsfile
+When I start: 
+- docker compose up --build (Build jenkins_server and jenkins_worker)
+- when I change git code automatically through 2 minutes start Jenkins pipeline from https://github.com/sashaloven/CI_CD_Project (screen)
+When I run docker file from Node.js app from forStep2 its expose port 3000, but app run on port 80 (screen)
+The most problems was with right access host-server-worker.
