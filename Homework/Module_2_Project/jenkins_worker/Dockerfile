@@ -7,8 +7,6 @@ RUN groupmod -g 976 jenkins
 RUN groupadd -g 972 docker
 RUN usermod -aG docker jenkins
 RUN chown jenkins:docker  /home/jenkins
-RUN chmod -R 755 /home/jenkins
-RUN chown -R jenkins:jenkins /home/jenkins
 
 RUN apt-get update && apt-get install -y \
     apt-transport-https \
