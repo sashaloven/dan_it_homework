@@ -1,0 +1,78 @@
+---
+- name: Install Docker, Docker Compose, and Deploy Nginx
+  hosts: web
+  become: true
+
+  tasks:
+    - name: Update apt packages
+      apt:
+        update_cache: yes
+
+    - name: Install prerequisites
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Add user to Docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Install Docker Compose
+      shell: |
+        curl -L "https://github.com/docker/compose/releases/download/v2.1.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+      args:
+        executable: /bin/bash
+
+    - name: Set executable permissions for Docker Compose
+      file:
+        path: /usr/local/bin/docker-compose
+        mode: '0755'
+        state: file
+
+
+    - name: Create Docker Compose directory
+      file:
+        path: /opt/nginx-docker
+        state: directory
+
+    - name: Create Docker Compose file for Nginx
+      copy:
+        dest: /opt/nginx-docker/docker-compose.yml
+        content: |
+          version: '3'
+          services:
+            nginx:
+              image: nginx:latest
+              ports:
+                - "80:80"
+
+    - name: Pull Nginx Docker image
+      docker_image:
+        name: nginx
+        source: pull
+
+    - name: Start Nginx container with Docker Compose
+      command: docker-compose up -d
+      args:
+        chdir: /opt/nginx-docker
