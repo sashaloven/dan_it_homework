@@ -61,7 +61,7 @@ resource "aws_route_table_association" "public-subnet-1-association" {
 }
 
 
-# Create Security group what allow_ssh_and_http_from_anywhere
+# Create Security group what allow_ssh_and_http_from_anywhere, and Jenkins port
 
 resource "aws_security_group" "lov_sg_ssh" {
   name        = "lov_sg_ssh"
@@ -84,6 +84,13 @@ resource "aws_security_group" "lov_sg_ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "Jenkins Port"
+    from_port = 8080
+    to_port = 8080
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   egress {
     description = "Allow all outbound traffic"
     from_port   = 0
