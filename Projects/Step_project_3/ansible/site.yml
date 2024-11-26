@@ -1,0 +1,6 @@
+---
+- name: Configure Jenkins Server with DocherHub 
+  hosts: jenkins_server
+  become: yes
+  roles:
+    - jenkins_server

@@ -1,0 +1,13 @@
+---
+
+ # Update and upgrade the system
+ 
+- name: Update APT repository and cache
+  apt:
+    update_cache: yes
+
+- name: Upgrade all installed packages
+  apt:
+    upgrade: dist
+    autoremove: yes
+    autoclean: yes
