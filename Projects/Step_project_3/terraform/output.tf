@@ -11,8 +11,9 @@ output "public_ips" {
 resource "null_resource" "generate_inventory" {
   provisioner "local-exec" {
     command = <<EOT
-      echo "[web]" > ../ansible/inventory
+      echo "[jenkins_master]" > ../ansible/inventory
       echo "${aws_instance.public-instance-1.public_ip}" >> ../ansible/inventory
+      echo "[jenkins_worker]" >> ../ansible/inventory
       echo "${aws_instance.public-instance-2.public_ip}" >> ../ansible/inventory
     EOT
   }
