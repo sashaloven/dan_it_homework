@@ -1,6 +1,7 @@
 ---
 - name: Configure Jenkins Server with DocherHub 
-  hosts: jenkins_server
+  hosts: jenkins_master
   become: yes
   roles:
-    - jenkins_server
+    - ubuntu_update
+    - jenkins_master
