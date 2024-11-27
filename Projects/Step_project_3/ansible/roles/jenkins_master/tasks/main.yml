@@ -1,15 +1,15 @@
 ---
 # Jenkins Master Installation Tasks
 
-- name: Install OpenJDK (Jenkins dependency)
+- name: Install OpenJDK-17 (Jenkins dependency)
   apt:
-    name: openjdk-11-jdk
+    name: openjdk-17-jdk
     state: present
     update_cache: yes
 
 - name: Add Jenkins repository key
   apt_key:
-    url: https://pkg.jenkins.io/debian/jenkins.io.key
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
     state: present
 
 - name: Add Jenkins repository
@@ -29,41 +29,10 @@
     state: started
     enabled: yes
 
-- name: Install Docker Hub plugin in Jenkins
-  jenkins_plugin:
-    name: docker-workflow
-    state: present
+- name: Get Jenkins admin password from the file
+  command: cat /var/lib/jenkins/secrets/initialAdminPassword
+  register: jenkins_admin_password
 
-- name: Install NodeJS plugin in Jenkins
-  jenkins_plugin:
-    name: nodejs
-    state: present
-
-- name: Restart Jenkins to apply plugins
-  service:
-    name: jenkins
-    state: restarted
-
-# watch here on hostvars
-- name: Verify DockerHub plugin installation
-  uri:
-    url: "http://{{ hostvars[inventory_hostname].ansible_host }}:8080/pluginManager/installed"
-    method: GET
-    return_content: yes
-  register: docker_plugin_status
-
-- name: Display DockerHub plugin installation status
+- name: Show Jenkins Admin Password
   debug:
-    msg: "DockerHub plugin installation status: {{ docker_plugin_status.content }}"
-
-# watch here on hostvars
-- name: Verify NodeJS plugin installation
-  uri:
-    url: "http://{{ hostvars[inventory_hostname].ansible_host }}:8080/pluginManager/installed"
-    method: GET
-    return_content: yes
-  register: nodejs_plugin_status
-
-- name: Display NodeJS plugin installation status
-  debug:
-    msg: "NodeJS plugin installation status: {{ nodejs_plugin_status.content }}"
+    msg: "Jenkins Admin Password: {{ jenkins_admin_password.stdout }}"

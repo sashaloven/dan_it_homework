@@ -98,6 +98,12 @@ resource "aws_security_group" "lov_sg_ssh" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  egress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # Replace with a more restrictive CIDR if needed
+  }
 
   tags = var.tags
 }

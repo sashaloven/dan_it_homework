@@ -1,7 +1,14 @@
 ---
-- name: Configure Jenkins Server with DocherHub 
+- name: Configure Jenkins Server
   hosts: jenkins_master
   become: yes
   roles:
     - ubuntu_update
     - jenkins_master
+
+- name: Jenkins worker with Nodejs, npm and Docker 
+  hosts: jenkins_worker
+  become: yes
+  roles:
+    - ubuntu_update
+    - jenkins_worker

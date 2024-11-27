@@ -1,4 +1,4 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> f35a711466924361c11f9d1f0534badd891b1dd5
+[jenkins_master]
+ansible_user=ubuntu ansible_private_key_file=~/.ssh/id_rsa
+[jenkins_worker]
+ansible_user=ubuntu ansible_private_key_file=~/.ssh/id_rsa
