@@ -1,0 +1,85 @@
+---
+
+# Install Node.js and npm for project step_2
+- name: Install Node.js and npm
+  apt:
+    name:
+      - nodejs
+      - npm
+    state: present
+    update_cache: yes
+
+# Install Jenkins dependencies with groups, download .jar file and connect to server
+
+- name: Install JDK_17 (required for Jenkins agent)
+  apt:
+    name: openjdk-17-jdk
+    state: present
+
+- name: Create Jenkins user
+  user:
+    name: jenkins
+    comment: "Jenkins User"
+    create_home: yes
+    shell: /bin/bash
+
+- name: Create directory for Jenkins agent
+  file:
+    path: /home/jenkins/agent
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: '0775'
+
+- name: Add ubuntu user to jenkins group
+  user:
+    name: ubuntu
+    groups: jenkins
+    append: yes
+
+- name: Download Jenkins agent JAR
+  get_url:
+    url: "{{ jenkins_server_url }}/jnlpJars/agent.jar"
+    dest: /home/jenkins/agent/agent.jar
+    owner: jenkins
+    group: jenkins
+    mode: '0775'
+
+- name: Ensure remoting directory exists for Jenkins agent
+  file:
+    path: /home/jenkins/agent/remoting
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: '0777'
+
+- name: Recursively change permissions of directories inside remoting to 0777
+  find:
+    paths: /home/jenkins/agent/remoting
+    file_type: directory
+  register: remoting_directories
+
+- name: Set permissions 0777 on all subdirectories inside remoting
+  file:
+    path: "{{ item.path }}"
+    mode: '0777'
+    owner: jenkins
+    group: jenkins
+  with_items: "{{ remoting_directories.files }}"
+  when: remoting_directories.matched > 0
+
+
+# Install nohub for background start jenkins_worker
+- name: Install coreutils (for nohup)
+  package:
+    name: coreutils
+    state: present
+
+- name: Run Jenkins agent manually (using ansible)
+  shell: |
+    nohup java -jar agent.jar -url {{ jenkins_server_url }} -secret {{ agent_secret }} -name {{ worker_name }} -webSocket -workDir "/home/jenkins/agent"
+  become_user: ubuntu
+  args:
+    chdir: /home/jenkins/agent
+  async: 9999999  
+  poll: 0

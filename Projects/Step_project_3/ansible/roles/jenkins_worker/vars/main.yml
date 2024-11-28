@@ -1,0 +1,4 @@
+---
+jenkins_server_url: "http://ip_jenkins_master:8080" 
+worker_name: "jenkins_worker_1"  
+agent_secret: "You_agent_key"

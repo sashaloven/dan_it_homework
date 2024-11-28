@@ -15,11 +15,6 @@ variable "instance_type" {
   type        = string
 }
 
-variable "ansible_user" {
-  description = "user of ansible EC2"
-  type        = string
-}
-
 variable "ansible_private_key_file" {
   description = "key for ssh conenct"
   type        = string

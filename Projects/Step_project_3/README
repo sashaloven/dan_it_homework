@@ -1,0 +1,69 @@
+Project what use Terraform for AWS infrastructure and Ansible
+for configuration jenkins master and jenkins worker and connect them between
+each other.
+
+Plugins on master need for project (https://github.com/sashaloven/CI_CD_Project):
+- Docker
+- Docker pipeline
+- DockerHub
+- Node.js
+
+Host installation:
+- Jenkins
+- Java_JDK_17
+- Nginx use for reverse proxy jenkins_master_ip
+
+Installiation on worker host:
+- Docker use for run jenkins pipeline on jenkins worker
+- Java_JDK_17
+- Node.js
+- Npm
+- Nohup
+
+1. Terraform infrastructure use for create VPC with 2 subnets (private and public),
+   Nat Gateway, internet gateway, route table, security group with allow ssh and http, create key_pair from /home/user/.ssh/id_pub and 2 ubuntu EC2 instances in 
+   public subnet.
+
+2. Ansible use for configuration jenkins master and jenkins worker. 
+   - Ubuntu update and upgrade
+   - Install on Jenkins master - Java_JDK_17 and jenkins, Nginx for reverse proxy.
+   - Jenkins worker - Docker, Java_JDK_17, Node.js, Npm, nohup for background start   jenkins_worker.
+
+    
+                             FOR  START TERRAFORM
+
+1. Terraform need to change terraform.tfvars with your variables (AMI must be ubuntu), providers.tf need to choose you region and S3 bucket.
+2. After terraform init, terraform plan, terraform apply will add 14 resources
+   in your AWS account.
+2. After finish - terraform will generate ../ansible/inventory.ini with IP_adress
+   jenkins_master and jenkins_worker,ansible_user=ubuntu, ansible_private_key_file=~/.ssh/id_rsa. Ansible need this file for start jenkins_worker.
+
+                            ANSIBLE (jenkins_master)
+
+1. ansible-playbook -i inventory.ini site.yml --limit jenkins_master --->
+   ---> install on jenkins_master Java_JDK_17 and Jenkins, Nginx for reverse proxy. 
+2. Open in browser "http://ip_jenkins_master:8080" and put admin password.
+3. Install suggest pluggin and create user and password.
+4. You need to go in Plugins and install plugin Docker and Docker pipeline,Node.js
+   and DockerHub.
+5. Need to create Agent with /home/user/dir where you will save agent.jar and put 
+   in /roles/jenkins_worker/vars/main.yml (you need to change number of executors of master to "0", because all pipelines will start on worker).
+6. Need to create DockerHub credentional for push docker image.
+
+                            ANSIBLE (jenkins_master)
+
+1. Need to add user in docker group /roles/geerlingguy.docker/default/main.uml
+   for use docker on jenkins_worker
+2. In file /roles/jenkins_worker/vars/main.yml add ip of master, worker_agent_name 
+   what you create before and agent secret token.
+3. ansible-playbook -i inventory.ini --limit jenkins_worker ---> this will install
+   everything for worker and connect to master automaticly.
+
+
+                               Jenkins pipeline
+
+1. Create a pipeline from jenkins file ---> from git ---> 
+   ---> https://github.com/sashaloven/CI_CD_Project ---> branch: /main
+2. Start pipeline for test.
+   
+

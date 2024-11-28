@@ -1,0 +1,30 @@
+---
+
+# Install Nginx and enable
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+  notify:
+    - restart nginx
+
+- name: Create Nginx reverse proxy config for Jenkins
+  template:
+    src: nginx_jenkins_proxy.conf.j2
+    dest: /etc/nginx/sites-available/jenkins
+  notify:
+    - restart nginx
+
+- name: Enable Jenkins site
+  file:
+    src: /etc/nginx/sites-available/jenkins
+    dest: /etc/nginx/sites-enabled/jenkins
+    state: link
+  notify:
+    - restart nginx
+
+- name: Ensure Nginx is started and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: yes
