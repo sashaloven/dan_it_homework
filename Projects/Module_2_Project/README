@@ -1,4 +1,4 @@
-CI/CD Project with Jenkins and Node.js
+CI/CD Project with Jenkins and Node.js 😎
 
 This project demonstrates a CI/CD pipeline setup using Jenkins, Docker, and Node.js. The pipeline is configured to automatically trigger when changes are pushed to the GitHub repository, build a Docker image, run tests, and deploy the application.
 
@@ -36,7 +36,7 @@ Prerequisites
 🧩 Pipeline Workflow
 The pipeline, defined in the Jenkinsfile, performs the following stages:
 
-1. Pull
+1. Pull 🤖
 Fetches the latest code from the GitHub repository branch.
 
 ###
@@ -47,7 +47,7 @@ stage ('Pull') {
 }
 ###
 
-2. Build
+2. Build 🔨
 Builds the Docker image for the Node.js application using the Dockerfile in the Step_Project_2 directory.
 
 ###
@@ -61,7 +61,7 @@ stage ('Build') {
 }
 ###
 
-3. Run
+3. Run 🚀
 Runs the Docker container in detached mode with ports 80 and 3000 exposed.
 
 ###
@@ -74,7 +74,7 @@ stage('Run') {
 }
 ###
 
-4. Test
+4. Test 🧪
 Installs the required dependencies and runs tests inside the container. If the tests fail, the pipeline logs the failure and does not proceed.
 
 ###
@@ -94,7 +94,7 @@ stage('Test') {
 }
 ###
 
-5. Push to Docker Hub
+5. Push to Docker Hub 📤
 Pushes the Docker image to Docker Hub using stored credentials.
 
 ###
@@ -109,7 +109,7 @@ stage('Push to Docker Hub') {
 }
 ###
 
-6. Clear Docker Containers and Images
+6. Clear Docker Containers and Images 🧹
 Removes the Docker container and the image to clean up the environment.
 
 ###
