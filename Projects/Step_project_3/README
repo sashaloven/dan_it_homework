@@ -68,7 +68,8 @@ This will create the following AWS resources:
 - EC2 instances (Jenkins Master and Jenkins Worker as a Spot Instance)
 
 5. Generate inventory.ini 📜
-After Terraform finishes, it will generate an inventory.ini file in the ../ansible/ directory. This file will contain the IP addresses for the Jenkins Master and Jenkins Worker, along with the SSH credentials needed for Ansible.
+After Terraform finishes, it will generate an inventory.ini file in the ../ansible/ directory. This file will contain the IP addresses for the Jenkins Master and Jenkins Worker,
+along with the SSH credentials needed for Ansible.
 
 Ansible Setup 🛠️
 1. Configure Jenkins Master 🖥️
