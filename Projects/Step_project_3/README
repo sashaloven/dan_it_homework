@@ -1,68 +1,150 @@
-Project what use Terraform for AWS infrastructure and Ansible
-for configuration jenkins master and jenkins worker (SPOT INSTANCE) and connect them between each other.
 
-Plugins on master need for project (https://github.com/sashaloven/CI_CD_Project):
+CI/CD Project with Terraform and Ansible for Jenkins Setup 🚀
+This project uses Terraform to set up the AWS infrastructure and Ansible to configure a Jenkins Master and Jenkins Worker (Spot Instance). Let's get started! 😄
+
+Project Overview 🌐
+This project automates the creation of a Jenkins CI/CD pipeline environment on AWS. It includes:
+
+- Terraform: For provisioning AWS infrastructure (VPC, EC2 instances, NAT Gateway, Security Groups, etc.).
+- Ansible: For configuring Jenkins Master and Jenkins Worker (Spot Instance).
+- Jenkins: For continuous integration and deployment (with necessary plugins).
+
+Components 🛠️:
+1. Jenkins Master:
+- Plugins: Docker, Docker Pipeline, DockerHub, Node.js 🐳.
+- Configuration: Install Jenkins, Java JDK 17, and Nginx for reverse proxy 🔧.
+
+2. Jenkins Worker:
+- Software: Docker (for running Jenkins pipelines), Java JDK 17, Node.js, NPM, Nohup (for running Jenkins Worker as a background process) 🖥️.
+
+Pre-requisites 📝
+Terraform: Make sure you have Terraform installed on your local machine. You can download it from Terraform Downloads.
+
+Ansible: Ensure Ansible is installed. You can install it using:
+
+> pip install ansible
+
+AWS CLI: You need AWS CLI configured with proper IAM permissions. You can configure it by running:
+
+> aws configure
+
+SSH Key: Ensure you have an SSH key pair for connecting to your EC2 instances. You should have the private key (~/.ssh/id_rsa) available on your local machine 🔑.
+S3 Bucket: Terraform will use an S3 bucket for remote state storage. Create a bucket in AWS if not already created 🗄️.
+
+Terraform Setup 🏗️
+1. Configure Variables 🛠️
+Before starting, configure the terraform.tfvars file with the following variables:
+
+- AMI: Specify the Ubuntu AMI (it should be an Ubuntu AMI for the EC2 instances).
+- Region: Choose the AWS region where you want to create resources.
+- S3 Bucket: Specify an existing S3 bucket name for storing Terraform state.
+
+```
+ami = "ami-xxxxxxxxxxxxxxxxx"  # Specify the Ubuntu AMI
+region = "us-east-1"           # Choose your region
+s3_bucket = "your-terraform-bucket"
+```
+
+2. Initialize Terraform 🔄
+Run the following command to initialize the Terraform project:
+
+> terraform init
+
+3. Plan the Infrastructure 🧑‍💻
+Terraform will show you the changes that will be made in your AWS account. To preview them, run:
+
+> terraform plan
+
+4. Apply Terraform Configuration 🚀
+To provision the resources, run:
+
+> terraform apply
+
+This will create the following AWS resources:
+- VPC
+- Public and Private Subnets
+- Internet Gateway, NAT Gateway, Route Tables
+- Security Groups allowing SSH and HTTP access
+- EC2 instances (Jenkins Master and Jenkins Worker as a Spot Instance)
+
+5. Generate inventory.ini 📜
+After Terraform finishes, it will generate an inventory.ini file in the ../ansible/ directory. This file will contain the IP addresses for the Jenkins Master and Jenkins Worker, along with the SSH credentials needed for Ansible.
+
+Ansible Setup 🛠️
+1. Configure Jenkins Master 🖥️
+Run the following Ansible playbook to set up the Jenkins Master:
+
+> ansible-playbook -i inventory.ini site.yml --limit jenkins_master
+
+This playbook will:
+- Update and upgrade the Ubuntu OS
+- Install Java JDK 17
+- Install Jenkins
+- Configure Nginx as a reverse proxy for Jenkins
+
+2. Jenkins Web Interface 🌐
+After the playbook finishes, open your browser and navigate to:
+
+> http://<jenkins_master_ip>:80
+
+The admin password can be found in the Jenkins container logs or file /var/lib/jenkins/secrets/initialAdminPassword.
+Complete the setup by installing the suggested plugins and creating an admin user.
+
+3. Install Jenkins Plugins 🔌
+Install the following plugins:
+
 - Docker
-- Docker pipeline
+- Docker Pipeline
+- Node.js
 - DockerHub
-- Node.js
+- To do this, go to Manage Jenkins > Manage Plugins and search for the plugins to install.
 
-Host installation:
-- Jenkins
-- Java_JDK_17
-- Nginx use for reverse proxy jenkins_master_ip
+4. Jenkins Agent Configuration ⚙️
+Create an agent on the Jenkins Master with the following details:
 
-Installiation on worker host:
-- Docker use for run jenkins pipeline on jenkins worker
-- Java_JDK_17
-- Node.js
-- Npm
-- Nohup
+The agent jar file will be saved in /home/user/dir.
+Configure the agent in the /roles/jenkins_worker/vars/main.yml file:
+Set the number of executors for the master to 0 (since all jobs will run on the worker).
+Set the worker agent name and secret token.
 
-1. Terraform infrastructure use for create VPC with 2 subnets (private and public),
-   Nat Gateway, internet gateway, route table, security group with allow ssh and http, create key_pair from /home/user/.ssh/id_pub and 2 ubuntu EC2 instances in 
-   public subnet.
+5. DockerHub Credentials 🐳
+Configure DockerHub credentials to enable pushing Docker images from Jenkins.
 
-2. Ansible use for configuration jenkins master and jenkins worker. 
-   - Ubuntu update and upgrade
-   - Install on Jenkins master - Java_JDK_17 and jenkins, Nginx for reverse proxy.
-   - Jenkins worker - Docker, Java_JDK_17, Node.js, Npm, nohup for background start   jenkins_worker.
+6. Configure Jenkins Worker (Spot Instance) 🧑‍🏭
+Run the following Ansible playbook to configure the Jenkins Worker:
 
-    
-                             FOR  START TERRAFORM
+> ansible-playbook -i inventory.ini --limit jenkins_worker
 
-1. Terraform need to change terraform.tfvars with your variables (AMI must be ubuntu), providers.tf need to choose you region and S3 bucket.
-2. After terraform init, terraform plan, terraform apply will add 14 resources
-   in your AWS account.
-2. After finish - terraform will generate ../ansible/inventory.ini with IP_adress
-   jenkins_master and jenkins_worker,ansible_user=ubuntu, ansible_private_key_file=~/.ssh/id_rsa. Ansible need this file for start jenkins_worker.
+This playbook will:
+- Install Docker (for Jenkins pipeline execution)
+- Install Java JDK 17
+- Install Node.js and NPM
+- Install Nohup for running Jenkins Worker as a background process
+- Connect the Jenkins Worker to the Jenkins Master
+- Jenkins Pipeline 🔄
 
-                            ANSIBLE (jenkins_master)
+1. Create a Jenkins Pipeline 🛠️
+Create a new Jenkins pipeline job.
+Use the following Git repository URL in the pipeline definition:
 
-1. ansible-playbook -i inventory.ini site.yml --limit jenkins_master --->
-   ---> install on jenkins_master Java_JDK_17 and Jenkins, Nginx for reverse proxy. 
-2. Open in browser "http://ip_jenkins_master:80 (Nginx_proxy)" and put admin password.
-3. Install suggest pluggin and create user and password.
-4. You need to go in Plugins and install plugin Docker and Docker pipeline,Node.js
-   and DockerHub.
-5. Need to create Agent with /home/user/dir where you will save agent.jar and put 
-   in /roles/jenkins_worker/vars/main.yml (you need to change number of executors of master to "0", because all pipelines will start on worker).
-6. Need to create DockerHub credentional for push docker image.
+https://github.com/sashaloven/CI_CD_Project
+Branch: main
 
-                            ANSIBLE (jenkins_master)
+2. Test the Pipeline 🧪
+Once the pipeline is set up, run it to test the full process from the Jenkins Master to the Jenkins Worker (Spot Instance).
 
-1. Need to add user in docker group /roles/geerlingguy.docker/default/main.uml
-   for use docker on jenkins_worker
-2. In file /roles/jenkins_worker/vars/main.yml add ip of master, worker_agent_name 
-   what you create before and agent secret token.
-3. ansible-playbook -i inventory.ini --limit jenkins_worker ---> this will install
-   everything for worker and connect to master automaticly.
+Troubleshooting 🧐
+- Issue: Nginx is not proxying to Jenkins properly.
+Ensure that the Nginx configuration file is correctly pointing to the Jenkins Master’s IP address.
 
+- Issue: Jenkins Worker is not connecting to the Jenkins Master.
+Check the worker's agent configuration and verify that the secret token is correctly set.
 
-                               Jenkins pipeline
+- Issue: Terraform shows errors during apply.
+Ensure that all required variables are correctly set in the terraform.tfvars file.
+Check AWS IAM permissions to ensure Terraform can provision resources.
 
-1. Create a pipeline from jenkins file ---> from git ---> 
-   ---> https://github.com/sashaloven/CI_CD_Project ---> branch: /main
-2. Start pipeline for test.
-   
+Clean Up 🧹
+To destroy the infrastructure and remove all AWS resources, run:
 
+> terraform destroy
