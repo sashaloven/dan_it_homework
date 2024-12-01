@@ -119,7 +119,7 @@ resource "aws_instance" "public-instance-1" {
   key_name                     = aws_key_pair.ssh_key.key_name
   vpc_security_group_ids = [aws_security_group.lov_sg_ssh.id]
    tags = {
-    Name = "Jenkins-master"
+    Name = "Lovyniuk-Jenkins-master"
   }
 }
 
@@ -131,9 +131,17 @@ resource "aws_instance" "public-instance-1" {
   key_name                     = aws_key_pair.ssh_key.key_name
   vpc_security_group_ids = [aws_security_group.lov_sg_ssh.id]
    tags = {
-    Name = "Jenkins-worker"
+    Name = "Lovyniuk-Jenkins-worker"
   }
 
+  instance_market_options {
+    market_type = "spot"   # Specifying that this is a Spot instance
+     spot_options {
+      max_price = var.max_price
+    }
+  }  
+
+}
   # Can add pub ssh key, but I use key from ~/.ssh/id_rsa.pub
   # user_data = <<-EOF
   #            #!/bin/bash
@@ -142,6 +150,4 @@ resource "aws_instance" "public-instance-1" {
   #            chmod 600 /home/ubuntu/.ssh/authorized_keys
   #            chown -R ubuntu:ubuntu /home/ubuntu/.ssh
   #            EOF
-
-}
 

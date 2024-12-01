@@ -1,6 +1,5 @@
 Project what use Terraform for AWS infrastructure and Ansible
-for configuration jenkins master and jenkins worker and connect them between
-each other.
+for configuration jenkins master and jenkins worker (SPOT INSTANCE) and connect them between each other.
 
 Plugins on master need for project (https://github.com/sashaloven/CI_CD_Project):
 - Docker
@@ -42,7 +41,7 @@ Installiation on worker host:
 
 1. ansible-playbook -i inventory.ini site.yml --limit jenkins_master --->
    ---> install on jenkins_master Java_JDK_17 and Jenkins, Nginx for reverse proxy. 
-2. Open in browser "http://ip_jenkins_master:8080" and put admin password.
+2. Open in browser "http://ip_jenkins_master:80 (Nginx_proxy)" and put admin password.
 3. Install suggest pluggin and create user and password.
 4. You need to go in Plugins and install plugin Docker and Docker pipeline,Node.js
    and DockerHub.
