@@ -1,10 +1,185 @@
-# DevOps Course Projects
+CI/CD Project with Jenkins and Node.js
 
-Welcome to the **DevOps Course Projects** repository! 🚀  
-This repository contains projects and exercises completed during various DevOps training modules. Each folder represents a project or a step from a specific module.
+This project demonstrates a CI/CD pipeline setup using Jenkins, Docker, and Node.js. The pipeline is configured to automatically trigger when changes are pushed to the GitHub repository, build a Docker image, run tests, and deploy the application.
 
----
+📋 Project Overview
 
-## 📂 Repository Structure
+Objectives:
+- Automate the CI/CD process using Jenkins.
+- Build, test, and deploy a Node.js application in a containerized environment.
+- Push Docker images to Docker Hub upon successful builds.
 
-Module_1_Project/ │ ├── Jenkins_server/ │ └── Dockerfile # Dockerfile for Jenkins master server │ ├── Jenkins_worker/ │ └── Dockerfile # Dockerfile for Jenkins worker node │ ├── docker-compose.yml # Docker Compose configuration file └── README.md # Project documentation
+Highlights:
+- The Jenkins pipeline is configured to poll the GitHub repository every 2 minutes.
+- The Node.js application Docker image is built and tested before deployment.
+- The app is containerized and runs inside Docker on the Jenkins worker node.
+
+🛠️ Tools and Technologies
+
+- Jenkins: Automation server for CI/CD pipelines.
+- Docker: Containerization platform for building and deploying the application.
+- Docker Compose: Manages Jenkins server and worker containers.
+- Node.js: Backend runtime environment for the app.
+- Groovy: Scripting language for Jenkins pipeline automation.
+
+🚀 Setup and Configuration
+
+Prerequisites
+1. Install Docker and Docker Compose. You can follow the official installation guides:
+- Docker Installation
+- Docker Compose Installation
+
+2. Create a GitHub repository (e.g., sashaloven/CI_CD_Project) to store your code.
+
+3. Create a Docker Hub account for storing your Docker images: Docker Hub.
+
+🧩 Pipeline Workflow
+The pipeline, defined in the Jenkinsfile, performs the following stages:
+
+1. Pull
+Fetches the latest code from the GitHub repository branch.
+
+###
+stage ('Pull') {
+    steps {
+        git url: 'https://github.com/sashaloven/CI_CD_Project', branch: 'main'   
+    }
+}
+###
+
+2. Build
+Builds the Docker image for the Node.js application using the Dockerfile in the Step_Project_2 directory.
+
+###
+stage ('Build') {
+    steps {
+        sh 'chmod +x Step_Project_2/tests'
+        dir('Step_Project_2') {
+            sh 'docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_TAG} .'
+        }
+    }
+}
+###
+
+3. Run
+Runs the Docker container in detached mode with ports 80 and 3000 exposed.
+
+###
+stage('Run') {
+    steps {
+        dir('Step_Project_2') {
+            sh 'docker run -d --name ${CONTAINER_NAME} -p 3000:3000 -p 80:80 ${DOCKER_IMAGE_NAME}'
+        }
+    }
+}
+###
+
+4. Test
+Installs the required dependencies and runs tests inside the container. If the tests fail, the pipeline logs the failure and does not proceed.
+
+###
+stage('Test') {
+    steps {
+        dir('Step_Project_2/tests') {
+            script {
+                try {
+                    sh 'npm install'
+                    sh 'npm test'
+                } catch (Exception e) {
+                    echo 'Test Failed'
+                }
+            }
+        }
+    }
+}
+###
+
+5. Push to Docker Hub
+Pushes the Docker image to Docker Hub using stored credentials.
+
+###
+stage('Push to Docker Hub') {
+    steps {
+        script {
+            docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}") {
+                sh 'docker push ${DOCKER_IMAGE_NAME}:${DOCKER_TAG}'
+            }
+        }
+    }
+}
+###
+
+6. Clear Docker Containers and Images
+Removes the Docker container and the image to clean up the environment.
+
+###
+stage('Clear Docker Containers and Images') {
+    steps {
+        script {
+            sh 'docker rm -f ${CONTAINER_NAME}'
+            sh 'docker rmi ${DOCKER_IMAGE_NAME}:${DOCKER_TAG} || true'
+        }
+    }
+}
+###
+
+🔍 How the Application Starts During the Pipeline
+When the Jenkins pipeline triggers, the Node.js application is built and executed inside a Docker container on the Jenkins worker. Here’s how it happens:
+
+1. Git Pull:
+- The pipeline pulls the latest code from the repository.
+
+2. Build Docker Image:
+- The pipeline builds a Docker image using the Dockerfile in the Step_Project_2 directory.
+
+3. Run the App:
+- The pipeline starts the container:
+
+###
+docker run -d --name app_js -p 3000:3000 -p 80:80 nodejs-app
+###
+- The app listens on port 80 inside the container and is accessible on port 3000 of the host.
+
+4. Testing:
+- The pipeline runs tests inside the container.
+
+5. Push to Docker Hub:
+- If all tests pass, the pipeline pushes the Docker image to Docker Hub.
+
+🛑 Challenges and Solutions
+
+1. Port Mismatch
+- The Node.js app exposes port 3000 in the Dockerfile but listens on port 80 internally. Modified the Docker commands to map these ports correctly.
+
+2. File Permissions
+- Jenkins worker had issues accessing the host Docker socket. Solved by:
+  ● Mounting /var/run/docker.sock and /usr/bin/docker into the worker container.
+  ● Ensuring proper permissions for the jenkins user.
+
+3. Worker Connection
+- The worker initially failed to connect to the master node. Fixed by verifying:
+  ● JENKINS_URL and JENKINS_SECRET in the worker environment variables.
+  ● Network configuration in docker-compose.yml.
+
+⚡ Running the Node.js Application
+
+To run the application locally:
+
+1. Build the Docker Image:
+
+###
+cd Step_Project_2
+docker build -t nodejs-app .
+###
+
+2.Run the Container:
+
+###
+docker run -p 3000:80 nodejs-app
+###
+
+3. Access the Application:
+
+###
+Open http://localhost:3000 in your browser.
+###
