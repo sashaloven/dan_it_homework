@@ -39,11 +39,11 @@ Before starting, configure the terraform.tfvars file with the following variable
 - Region: Choose the AWS region where you want to create resources.
 - S3 Bucket: Specify an existing S3 bucket name for storing Terraform state.
 
-```
+---
 ami = "ami-xxxxxxxxxxxxxxxxx"  # Specify the Ubuntu AMI
 region = "us-east-1"           # Choose your region
 s3_bucket = "your-terraform-bucket"
-```
+---
 
 2. Initialize Terraform 🔄
 Run the following command to initialize the Terraform project:
