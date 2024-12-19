@@ -3,7 +3,7 @@
 | 🐳 Part 1: Docker Compose Setup for App Service					 |
 |											 |
 |	- Set up a service called app using the Docker image from			 |
-|   > https://github.com/sashaloven/dan_it_homework/tree/main/Homework/Docker/Homework_1 |
+|   > [Homework_1](https://github.com/sashaloven/dan_it_homework/tree/main/Homework/Docker/Homework_1) |
 |	- The Docker image for app should be built dynamically using docker-compose.     |
 |											 |
 | 🐳 Part 2: Nginx Reverse Proxy Setup							 |
