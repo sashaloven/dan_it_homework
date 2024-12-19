@@ -1,0 +1,59 @@
+📝 Tasks: Random Number Guessing Game and SSH Configuration
+
+---
+	🎲 Random Number Guessing Game
+
+1. Generate a Random Number:
+
+	- Create a script that generates a random number between 1 and 100 and stores it in a variable.
+
+2. User Interaction:
+
+	- Ask the user to guess the number.
+	  - If the guess is correct:
+	    - 🎉 Print "Congratulations! You guessed the right number." and exit.
+
+	  - If the guess is incorrect:
+		Provide feedback:
+		   - 🔼 "Too high" if the guess is greater than the random number.
+		   - 🔽 "Too low" if the guess is less than the random number.
+
+	- Allow the user up to 5 attempts to guess the number.
+
+3. Endgame Scenarios:
+
+	- If the user fails after 5 attempts:
+	  - ❌ Print "Sorry, you've run out of attempts. The correct number was [the correct number]." and exit.
+
+
+---
+	🔐 SSH Configuration
+
+1. 👤 User Creation:
+
+	- Create a user named "john" with a default home folder.
+
+2. 🛠️ Configure SSH Server (Port 2222):
+
+	- Install and configure an SSH server:
+	- Change the listening port to 2222.
+	- Restrict root access.
+	- Disallow password authentication.
+	- Configure the server to only allow connections for john using an SSH key.
+
+3. 🔍 Parallel SSH Debug Server (Port 3333):
+
+	- Run an SSH server in debug mode:
+	- Listen on port 3333.
+	- Allow connections via passwords and SSH keys.
+	- Permit connections for all users (except root).
+
+4. 🔗 Connection Tests:
+
+	- Attempt to connect to both servers:
+	- Use john and an SSH key for port 2222.
+	- Use a password or SSH key for port 3333.
+
+5. 📋 Verification:
+
+- Check and document the status of both SSH servers.
