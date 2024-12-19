@@ -1,4 +1,4 @@
-### Every folder with homework contain 2 folders:
+### Every folder with homework contain 2 folders (if it needs):
 - **Src** --> folder with code
 - **Screen** --> folder with screenshots of done task or path of it
 
