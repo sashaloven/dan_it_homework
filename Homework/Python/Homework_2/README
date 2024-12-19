@@ -1,0 +1,42 @@
+📝 Task: Alphabet and English Alphabet Class
+------------------------------------------------------------------------------------------------------------------------------------------
+
+🧑 Class Structure Description
+
+1. Alphabet Class:
+
+	- Attributes:
+	   - Language (lang): The language of the alphabet.
+           - List of Letters (letters): The letters in the alphabet.
+	- Methods:
+           - print(): Print all the letters of the alphabet.
+           - letters_num(): Return the number of letters in the alphabet.
+
+2. EngAlphabet Class (inherits from Alphabet):
+
+	- Attributes:
+           - Language: "En" for English.
+           - List of Letters: English alphabet letters ('A' to 'Z').
+	- Methods:
+           - is_en_letter(): Determine if a given letter belongs to the English alphabet.
+           - letters_num(): Override to return the number of letters in the English alphabet from a static attribute (_letters_num).
+           - example(): Return an example text in English.
+
+3. ✅ Test Outputs:
+
+	- Print Alphabet Letters:
+           - 🅰️🅱️🅲️... (All the English alphabet letters will be printed).
+
+	- Number of Letters:
+           - 🧮 The number of letters in the English alphabet will be printed (26).
+
+	- Check if Letter 'F' is in the Alphabet:
+           - ✅ Yes, 'F' is part of the English alphabet.
+
+	- Check if Letter 'Щ' is in the Alphabet:
+           - ❌ No, 'Щ' is not part of the English alphabet.
+
+	- Example Text:
+           - 📄 "This is an example text in English."
+
+-------------------------------------------------------------------------------------------------------------------------------------------
