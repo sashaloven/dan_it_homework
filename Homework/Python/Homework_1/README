@@ -1,0 +1,26 @@
+📝 Task: Python Program for Number Guessing Game
+---------------------------------------------------------------------------------------------------------------
+													      |
+1. Program Description:											      |
+													      |
+	- 🎯 The program will generate a random number between 1 and 100.				      |
+	- 🤔 The user will be asked to guess the number.						      |
+												              |
+2. Program Flow:											      |
+													      |
+	- 💡 If the user's guess is correct, the program will print:					      | 
+	   - "Congratulations! You guessed the right number." and exit the game.			      |
+	- 🔄 If the guess is incorrect, the program will give feedback like:				      |
+	   - "Too high" or "Too low", and allow the user to guess again.				      |
+													      |
+4. Guessing Attempts:											      |
+													      |
+	- ⏳ The user will have a maximum of 5 attempts to guess the correct number.			      |
+	- 🚫 After 5 incorrect attempts, the program will print:					      |
+	   - "Sorry, you've run out of attempts. The correct number was [the correct number]" and exit.       |
+													      |
+5. Python Function:											      |
+													      |
+	- 💻 The program should be wrapped in a function that handles all the logic.			      |
+													      |
+---------------------------------------------------------------------------------------------------------------
