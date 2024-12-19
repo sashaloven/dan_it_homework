@@ -1,3 +1,7 @@
+### Every folder with homework contain 2 folders:
+- **Src** --> folder with code
+- **Screen** --> folder with screenshots of done task or path of it
+
 #### [Amazon_Web_Services](https://github.com/sashaloven/dan_it_homework/tree/main/Homework/Amazon_Web_Services) - Homework with AWS (EC2,S3,VPC...manually) and with Terraform code.
 #### [Docker](https://github.com/sashaloven/dan_it_homework/tree/main/Homework/Docker) - Homework with Dockerfile and Docker Compose.
 #### [Kuberneties](https://github.com/sashaloven/dan_it_homework/tree/main/Homework/Kuberneties) - Homework with pods and services.
