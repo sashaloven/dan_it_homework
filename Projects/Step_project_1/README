@@ -1,0 +1,79 @@
+📝 Task: Infrastructure, Database, and Application Setup with Vagrant				     |
+------------------------------------------------------------------------------------------------------
+
+🖥️ Subtask I - Infrastructure
+
+1. Describe Two Virtual Machines (VMs):
+
+	- 🛠️ Create two VMs using a Vagrantfile:
+	   - APP_VM: for deploying the application.
+	   - DB_VM: for hosting the database.
+
+2. Networking Configuration:
+
+	- 🌐 Preferably use private networking for easy communication between the VMs.
+	- 🚪 If not using private networking, ensure that APP_VM forwards port 8080 to the host.
+
+3. VM Operating System:
+
+	- ✅ Choose either CentOS or Ubuntu for the VMs.
+
+------------------------------------------------------------------------------------------------------
+
+🗄️ Subtask II - Database
+
+1. Provisioning MySQL on DB_VM:
+
+	- 🛠️ Use a provisioning script to install MySQL and any necessary dependencies on DB_VM.
+
+2. MySQL Configuration:
+
+	- 🔒 Customize the MySQL instance to accept connections only from your private network subnet.
+
+3. MySQL User and Database Setup:
+
+	- 🔑 Create a non-root MySQL user (codename DB_USER) and set a password (DB_PASS) using host environment variables.
+	- 🗂️ Create a database (codename DB_NAME) and grant DB_USER full privileges to the database.
+
+------------------------------------------------------------------------------------------------------
+
+💻 Subtask III - Application
+
+1. Create Application User on APP_VM:
+
+	- 👨 Create a non-root user (codename APP_USER) to run the application on APP_VM.
+
+2. Provisioning Application Dependencies:
+
+	- 🛠️ Use a provisioner to install Java JDK, git, and any necessary dependencies on APP_VM.
+
+3. Clone the Repository:
+
+	- 📂 Clone the project repository into the working directory (codename PROJECT_DIR).
+
+4. Build the Application with Maven:
+
+	- ⚙️ Use Maven (via the wrapper script mvnw) to run tests and package the application.
+	- ✅ If successful, find the .jar package in the $PROJECT_DIR/target folder.
+
+5. Move the .jar File:
+
+	- 📂 Move the .jar file to APP_USER’s home directory (codename APP_DIR).
+
+6. Set Environment Variables:
+
+	- 📝 Set the following environment variables on APP_VM (preferably using the same environment variables passed from the host machine as in DB_VM):
+	   - DB_HOST: IP of DB_VM
+           - DB_PORT: MySQL port (default 3306)
+           - DB_NAME: MySQL database name
+           - DB_USER: MySQL username
+           - DB_PASS: MySQL password
+           - Run the Application:
+
+7. 🏃 Run the application with APP_USER using the following command:
+
+	> java -jar your-app.jar
+
+8. Verify the Application:
+
+	- 🌐 Open your browser and visit http://$APP_VM_IP:8080 to see the PetClinic application running.

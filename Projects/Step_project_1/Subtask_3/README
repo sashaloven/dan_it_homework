@@ -1,0 +1,2 @@
+This subtask deside fast, I had a problem just with gpg_key (that why I cant automate all subtask in vagrantfile.)
+I git clone application to work folder, mvn test and mvn package. Screen

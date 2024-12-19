@@ -1,0 +1,5 @@
+I had problem what i didnt solve, its about ENV in Vagrantfile. 
+Its didnt work for me, maybe because I have fedora on PC and it dont work correct. 
+If I describe a variable, after call it throuh '#{DB_NAME}' (example) - this was mistake in every time. 
+I spend on it every day. So i decide it throuh "export".
+

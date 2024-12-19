@@ -1,3 +1,6 @@
 [submodule "Projects/Step_project_3/ansible/roles/geerlingguy.docker"]
 	path = Projects/Step_project_3/ansible/roles/geerlingguy.docker
 	url = https://github.com/geerlingguy/ansible-role-docker
+[submodule "Projects/Projects/Step_project_1/petclinic_project"]
+	path = Projects/Projects/Step_project_1/petclinic_project
+	url = https://gitlab.com/sashaloven/petclinic_project
