@@ -1,0 +1,57 @@
+📝 Task: REST API for Student Management
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Part 1: Develop a REST API
+Create a REST API using Python and Flask to manage students with data persistence in a students.csv file.
+
+1. Functionalities:
+- The API should support GET, POST, PUT, PATCH, and DELETE requests.
+
+	- GET
+
+	   - Retrieve student information by ID. If the ID isn't found, return an error.
+           - Retrieve students by last name. If there are multiple students, display all. If not found, return an error.
+           - Retrieve a list of all students.
+	
+	- POST
+
+           - Create a new student with automatically generated ID.
+           - Include first name, last name, and age in the request body. If any required field is missing or incorrect, return an error.
+
+	- PUT
+
+           - Update student information by their ID (first name, last name, and age).
+           - If the ID is not found or invalid fields are provided, return an error.
+
+	- PATCH
+
+           - Update the age of a student by their ID.
+           - If the ID isn't found or invalid fields are provided, return an error.
+
+	- DELETE
+
+           - Delete a student by their ID.
+           - If the ID is not found, return an error.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Part 2: Create test_requests.py
+Create a test script to verify the REST API's functionalities using the requests library.
+
+2. Functionalities to Test:
+        - GET: Retrieve all existing students.
+        - POST: Create three new students.
+        - GET: Retrieve all existing students after creation.
+        - PATCH: Update the second student's age.
+        - GET: Retrieve information about the second student.
+        - PUT: Update the third student's information (first name, last name, and age).
+        - GET: Retrieve information about the third student.
+        - GET: Retrieve all existing students again.
+        - DELETE: Delete the first student.
+        - GET: Retrieve all existing students after deletion.
+        - Save Results: Display and write the results to results.txt.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+	
