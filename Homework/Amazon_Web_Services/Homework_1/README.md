@@ -1,10 +1,10 @@
-#### 🐱 💻 Task 1: AWS EC2 Setup
+#### 💻 [task_1](https://github.com/sashaloven/dan_it_homework/tree/main/Homework/Amazon_Web_Services/Homework_1/task_1): AWS EC2 Setup
 - 🔑 Login to AWS web console
 - 🖥️ Create a test EC2 instance with type t2.micro based on Ubuntu and use public IP
 - 🔗 Connect to EC2 via SSH and verify that it works
 - 💣 Destroy the test EC2 instance
 
-#### 🛠️ Task 2: AWS S3 and IAM Setup
+#### 🛠️ [task_2](https://github.com/sashaloven/dan_it_homework/tree/main/Homework/Amazon_Web_Services/Homework_1/task_2): AWS S3 and IAM Setup
 - 🗂️ Create an S3 bucket with any unique name
 - 📤 Upload a test file to the S3 bucket and download it to your PC
 - 📝 Create your own IAM policy that allows access to only this specific S3 bucket
