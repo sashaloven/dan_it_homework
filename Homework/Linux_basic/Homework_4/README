@@ -1,0 +1,18 @@
+📝 Task: Linux Administration Exercise
+
+1. 👤 Create a User:
+	- Add a user named "bob".
+	     - ➕ Add "bob" to the sudo group to allow administrator privileges.
+
+2. 📜 Create a Script:
+	- 📂 In the /home/bob/ directory, create a script to:
+	- 🔧 Change the hostname to "ubuntu22".
+	- 🛡️ Set the script's execution permissions exclusively for the user "bob."
+
+3.▶️ Run the Script:
+	- Execute the script, reboot the system, and log in as the "bob" user.
+
+4. 🌐 Install and Verify Nginx:
+	- 🛠️ Install "nginx".
+	- ✅ Check if nginx is running.
+	- 🔍 Use netstat to verify which ports are open.
