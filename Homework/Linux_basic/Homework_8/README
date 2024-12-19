@@ -1,0 +1,21 @@
+📝 Task: Vagrant Project Setup with Nginx
+
+1. Create and Initialize a Vagrant Project:
+
+	- 🛠️ Create a new Vagrant project.
+	- 📦 Ensure it is an Ubuntu-based project.
+
+2. Configure Vagrant File:
+
+	- 🖥️ Set up Vagrantfile to spin up a single virtual machine.
+	- 🌐 Configure the virtual machine with a public network.
+
+3. Install and Configure Nginx:
+
+	- 🛠️ Use provisioning to install nginx on the virtual machine.
+	- 🔧 Modify the port using 'sed' so that nginx runs on port 82 (instead of the default port 80).
+
+4. Access the Nginx Page:
+
+	- 🌍 Open your host machine's browser and go to http://<your-vm-ip>:82.
+	- 🎉 You should see the "Welcome to nginx" page (or a custom welcome page if you create one!).
