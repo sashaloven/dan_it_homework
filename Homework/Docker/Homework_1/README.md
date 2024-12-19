@@ -1,13 +1,10 @@
 🐳 Task: Dockerize the REST API
-------------------------------------------------------------------------------------------------------------------------------------------
 
 Part 1: Create Dockerfile for REST API
+	
+- Create a Dockerfile to containerize the REST API from - [API_Homework](https://github.com/sashaloven/dan_it_homework/tree/main/Homework/Python/API_Homework)
 
-	- Create a Dockerfile to containerize the REST API from:
-
-		> https://github.com/sashaloven/dan_it_homework/tree/main/Homework/Python/API_Homework
-
-	- Use Gunicorn as the web server to run the API and configure it to listen on 0.0.0.0:8000.
+- Use Gunicorn as the web server to run the API and configure it to listen on 0.0.0.0:8000.
 
 🚀 Steps :
 
@@ -17,4 +14,3 @@ Part 1: Create Dockerfile for REST API
         - Expose Port: Expose port 8000 to allow external access to the container.
         - Set Entrypoint: Use the CMD command to run the application via Gunicorn.
 
-------------------------------------------------------------------------------------------------------------------------------------------
