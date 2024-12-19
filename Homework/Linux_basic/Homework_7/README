@@ -1,0 +1,83 @@
+📝 Task_1: User and Group Management
+👤 User Account Management
+
+1. Create User Accounts:
+
+	- Add the following users:
+	   - 👨 dev1
+	   - 👨 dev2
+	   - 👨 dev3
+
+2. Create Groups:
+
+	- Add the following groups:
+	   - 👥 developers
+	   - 👥 webmasters
+
+3. Assign Users to Groups:
+
+	- ➕ Add dev1 and dev2 to the "developers" group.
+	- ➕ Add dev3 to the "webmasters" group.
+
+4. Set Default Group for Users:
+
+	- Ensure the default group for all developers (dev1, dev2, dev3) is set to "developers."
+
+5. Create Home Directories:
+
+	- Create home directories in /home for each developer:
+	   - 🏠 /home/dev1
+	   - 🏠 /home/dev2
+	   - 🏠 /home/dev3
+
+6. Clone a User Account:
+
+	- Create a new user backupdev.
+	- Clone the home directory of dev1 for backupdev.
+
+📂 File and Directory Management
+
+	- Set Permissions for a Shared Project:
+	- Create a directory called "web_project" in /home.
+	- Allow read and write access for the "developers" group.
+
+   Immutable Log File:
+
+	- Create a file named my.log in /home.
+
+🛡️ Prevent anyone from writing to it except to append new content to the end of the file.
+
+
+📝 Task_2: Disk Utilization Monitoring
+📜 Script Creation and Setup
+
+1. Create the Script:
+
+	- Write a script that checks the disk utilization of the / volume.
+	- The script should:
+	   - Check the current disk usage percentage.
+	   - Compare the current usage with a configurable threshold value (X).
+	   - If the usage exceeds X%, the script should:
+	      - Write a warning message to the log file: /var/log/disk.log.
+	      - Include the current usage percentage and a timestamp.
+
+2. Set Up Crontab:
+
+	- Configure a cron job to run the script at a desired frequency (e.g., daily or hourly).
+	- In the crontab configuration, ensure the threshold value X% is easily configurable.
+
+3. Log File Location:
+
+	- Ensure that the log file /var/log/disk.log is created if it doesn't exist.
+	- The log file should contain entries like:
+	   - Warning: Disk usage exceeded X%
+	   - Timestamp of when the check was performed.
+
+
+
+📝 Task_3: Monit Configuration for Nginx Monitoring
+
+1. Create a Monit configuration to monitor the nginx service.
+
+	- The configuration should check if nginx is available on port 80 of the local host.
+	- If nginx is not available after 7 checks, Monit should stop further restart attempts and alert the administrator.
