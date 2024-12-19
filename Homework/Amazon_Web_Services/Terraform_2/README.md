@@ -1,20 +1,20 @@
 ### 🛠️ Task: Terraform Module and Backend Setup
-#### Create a Terraform module that takes the following input values:
+#### 1. Create a Terraform module that takes the following input values:
 
 - 🏗️ vpc_id
 - 🔓 list_of_open_ports
 
-#### In the eu-north-1 region, the module should:
+#### 2. In the eu-north-1 region, the module should:
 
 - 🔐 Create a security group that allows access from anywhere to the specified ports in the given VPC
 - 💻 Create a public EC2 instance in the specified VPC with a default Nginx server or Nginx running in a container
 
-#### Outputs:
+#### 3. Outputs:
 
 - 🌐 IP of the created instance
 - 🌍 Use http://IP to confirm that Nginx is running
 
-#### Backend Configuration:
+#### 4. Backend Configuration:
 
 - 🗄️ Configure S3 backend for your project
 - 📦 Use the terraform-state-danit-devops-2 bucket in the eu-central-1 region
