@@ -3,7 +3,7 @@ FROM python:3.9-slim
 # Create a workdir in container
 WORKDIR /app
 
-# Copy all files in container
+# Copy script in container
 COPY . .
 
 # Expose port 8082
