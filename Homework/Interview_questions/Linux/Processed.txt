@@ -1,0 +1,21 @@
+1. Daemon Process - is a background service that performs ongoing tasks without requiring 
+   direct interaction from the user, ensuring that various system functions or services run continuously.
+
+2. Signals in Linux
+    -  are a way for the Linux kernel to communicate with processes and to notify them of specific
+       events or actions.
+    Interrupt signals -  signals that are sent to a process in order to interrupt or terminate it.
+    SIGINT (signal 2) CTRL+C and SIGTERM (signal 15) is usually sent by the system to request 
+    that a process terminate.
+
+3. Cron - is a time-based job scheduler. It allows users to schedule tasks to run
+   automatically at specified intervals.
+   ( * * * * * ) minute, hour, day of the month, month, and day of the week.
+   crontab -l - view current cron jobs.
+
+4. System logs are crucial for understanding the behavior of a Linux system and troubleshooting issues that
+   may arise(возникают) /var/log - dir. "journalctl" to view logs collected by systemd.
+
+5. Stickiness Bit - when set on a directory, it ensures that only the owner of a file can delete or rename it,
+   even if other users have write permissions.
+   

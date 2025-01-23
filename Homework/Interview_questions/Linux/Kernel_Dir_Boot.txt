@@ -1,0 +1,23 @@
+1. Linux Kernel
+The Linux kernel is the core part of the operating system that manages hardware resources
+(CPU, memory, devices) and provides essential services for software applications.
+It handles process management, memory allocation, device communication, file systems, and networking.
+As a monolithic and modular kernel, it allows dynamic loading of modules, and its open-source nature
+enables customization and wide hardware compatibility.
+uname -r
+
+2. Directory three
+/bin - System binaries, including the command
+/boot - The files necessary for the system to boot
+/dev - Device files for all your peripherals,  that your Linux system uses to talk to your hardware
+/etc -  Contains system-wide configuration files and shell scripts used to manage system settings and services
+/home - This is where users store their files
+/library - System libraries. Libraries are just bunches (набор) of programming code that the programs on your
+system use to get things done
+/opt - is used to store optional or third-party software that is not part of the default installation.
+/proc - directory in Linux is a special virtual filesystem that provides information about the system
+and processes. It's dynamically generated and does not contain actual files on disk.
+/sbin - Essential commands that are only for the system administrator
+/usr - is a standard directory that stores user programs, libraries, documentation
+
+
