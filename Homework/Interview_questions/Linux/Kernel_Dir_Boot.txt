@@ -20,4 +20,13 @@ and processes. It's dynamically generated and does not contain actual files on d
 /sbin - Essential commands that are only for the system administrator
 /usr - is a standard directory that stores user programs, libraries, documentation
 
-
+3. Bootloader
+1 - BIOS/UEFI Initialization - hardware initialization
+2 - Master Boot Record (MRB) - find Grub
+3 - GRUB - Presenting a boot menu, Allowing the user to select the kernel version or operating system,
+    Loading the kernel into memory
+4 - Kernel Initialization - initializes the system, including hardware drivers and essential system services
+5 - Systemd - It is responsible for booting the system, managing services, and handling system processes.
+    tarts services in parallel to speed up boot times, uses unit files to configure services, and manages
+    service dependencies. It also provides centralized logging through journald
+6 - User Login
