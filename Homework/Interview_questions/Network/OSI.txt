@@ -1,0 +1,30 @@
+OSI Layers:
+
+1. Physical Layer
+    Transmits raw binary data (0s and 1s) over physical mediums (cables, radio waves).
+    Example: Ethernet cables, fiber optics.
+
+2. Data Link Layer
+    Purpose: Handles error detection, correction, and framing; ensures reliable node-to-node communication.
+    Example: MAC addresses, switches.
+
+3. Network Layer
+    Purpose: Manages logical addressing and routes data between networks.
+    Example: IP addresses, routers.
+
+4. Transport Layer
+    Purpose: Provides reliable or unreliable data transfer; ensures proper sequencing (послідовність)
+    and error handling.
+    Example: TCP (reliable), UDP (unreliable).
+
+5. Session Layer
+    Purpose: Establishes(встановлює), manages, and terminates communication sessions between applications.
+    Example: APIs, session management in web apps.
+
+6. Presentation Layer
+    Purpose: Ensures(гарантує) data is in a readable format, handles encryption, compression, and translation.
+    Example: SSL/TLS, data encryption.
+
+7. Application Layer
+    Purpose: Provides network services to end-user applications.
+    Example: HTTP, FTP, email protocols.

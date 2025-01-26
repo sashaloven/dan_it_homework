@@ -1,0 +1,24 @@
+The TCP/IP (Transmission Control Protocol/Internet Protocol) model is a 
+simplified and practical framework used for internet and network communication.
+It consists of 4 layers, which correspond closely to the OSI model:
+
+1. Network Interface Layer
+    Purpose: Handles the physical transmission of data between devices and ensures communication 
+    on the same network.
+    Example: Ethernet, Wi-Fi, MAC addressing.
+    Equivalent OSI Layers: Physical + Data Link.
+
+2. Internet Layer
+    Purpose: Manages logical addressing, routing, and forwarding of data across networks.
+    Example: IP (IPv4, IPv6), ICMP, ARP.
+    Equivalent OSI Layer: Network.
+
+3. Transport Layer
+    Purpose: Ensures end-to-end communication, data delivery, error checking, and flow control.
+    Example: TCP (reliable) and UDP (unreliable).
+    Equivalent OSI Layer: Transport.
+
+4. Application Layer
+    Purpose: Provides protocols and services for end-user applications to interact with the network.
+    Example: HTTP, FTP, SMTP, DNS.
+    Equivalent OSI Layers: Session + Presentation + Application.

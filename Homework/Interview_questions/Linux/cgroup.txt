@@ -1,0 +1,19 @@
+1. Cgroups, or Control Groups, is a Linux kernel feature that allows you to manage 
+    and limit system resources like CPU, memory, and I/O for processes or groups of 
+    processes. It's used for resource isolation, prioritization, and monitoring. 
+    It's commonly used in containerization tools like Docker and Kubernetes to ensure 
+    efficient(ефективні) resource allocation. There are two versions, with cgroups 
+    v2 providing a unified hierarchy for better simplicity and performance.
+
+2. sshd (Secure Shell Daemon) is a daemon process that handles incoming
+    Secure Shell (SSH) connections on a server. It enables secure communication
+    between a client and a server over an encrypted network, typically for
+    remote login or command execution. 
+    /etc/sshd/sshd_config
+
+3. - IoStat is simple tool that will collect and show system input and
+   output storage device statistics.
+   - Tcpdump one of the most widely used command-line network packet analyzer or packets 
+   sniffer program that is used capture or filter TCP/IP packets that received 
+   or transferred on a specific interface over a network.
+   

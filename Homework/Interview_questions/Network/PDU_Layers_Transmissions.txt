@@ -1,0 +1,32 @@
+1.  - In unicast transmissions, a single data packet is sent from a source to 
+    a single destination on the network.
+    - In multicast transmissions, a single data packet is copied and sent to 
+    specific destinations on the network
+    - In multicast transmissions, a single data packet is copied and sent to 
+    specific destinations on the network
+
+2. Network Access Layer:
+   • Exchange of data between the computer and the network
+   • Sending computer provides address of destination
+   • May need specific drivers and interface equipment depending on type of network used.
+
+3. Transport Layer:
+   ● Reliable(надійний) data exchange
+    ○ to make sure that all the data packets arrived in the same order(порядку) in which they are sent out
+    ○ Packets not received(отримані) or received in error are retransmitted(повторно передаються)
+   ● Independent of network being used
+   ● Independent of application
+
+4. Application Layer
+    ● Support for different user applications
+    ● e.g. e-mail, file transfer  
+
+5. Protocol Data Units (PDU)
+   ● User data is passed from layer to layer
+   ● Control information is added/removed to/from user data at each layer
+    ○ Header (and sometimes trailer)
+    ○ each layer has a different header/trailer
+   ● Data + header + trailer = PDU (Protocol Data Unit)
+    ○ This is basically what we call packet
+    ○ each layer has a different PDU  
+
