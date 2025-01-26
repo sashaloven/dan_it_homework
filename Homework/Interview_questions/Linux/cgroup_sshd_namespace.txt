@@ -17,3 +17,10 @@
    sniffer program that is used capture or filter TCP/IP packets that received 
    or transferred on a specific interface over a network.
    
+4. Linux namespaces are a kernel feature that isolate system resources for processes, 
+   giving each group of processes its own independent environment. They ensure isolation, 
+   security, and scalability by separating resources like process IDs (PID namespace), 
+   network interfaces (network namespace), file systems (mount namespace), 
+   and user privileges (user namespace).
+   Example: In containers, namespaces ensure each container has its own PID space,
+   network stack, and file system, independent of the host.
