@@ -1,0 +1,32 @@
+version: "3"
+volumes: 
+  esdata:
+services:
+
+  fluentd:
+    build: ./fluentd
+    depends_on: 
+      - elasticsearch
+    ports:
+    - 24224:24224
+    - 24224:24224/udp
+
+  elasticsearch:
+    image: elasticsearch:7.17.0
+    expose:
+      - 9200
+    ports: 
+      - 9200:9200
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+  
+  kibana:
+    image: kibana:7.17.0
+    depends_on: 
+      - elasticsearch
+    ports:
+      - 5601:5601
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
